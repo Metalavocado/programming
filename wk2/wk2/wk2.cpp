@@ -40,9 +40,18 @@ int _tmain(int argc, _TCHAR* argv[])
 	{	// std::vector<>	The preferred array structure
 		std::vector<Vector3> myVectorArray;		//friendlier syntax and less prone to bugs
 
+		myVectorArray.reserve(3 * 10);					// reserves data to prevent memory slowing due to allocation and reallocation
+
+		for (int index = 0; index < 10; index++)
+		{
+			myVectorArray.push_back(Vector3(1, 2, 3));	// Without the above line (reserve)
+			myVectorArray.push_back(Vector3(3, 4, 5));	// This loop would cause performance issues
+			myVectorArray.push_back(Vector3(5, 6, 7));	// The number you reserve can be exceeded, 
+														// however performance issues can occur if the values increase too far beyond this point.
+		}
 	}
 
-	{
+	{	// C-style array example
 		Vector3 myVectorArray[3] = { Vector3(), Vector3(), Vector3() };
 
 		myVectorArray[1] = Vector3(1, 2, 3);

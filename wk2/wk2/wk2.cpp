@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <vector>
 
 class Vector3
 {
@@ -36,8 +37,19 @@ public:
 int _tmain(int argc, _TCHAR* argv[])
 {
 
+	{	// std::vector<>	The preferred array structure
+		std::vector<Vector3> myVectorArray;		//friendlier syntax and less prone to bugs
+
+	}
+
 	{
 		Vector3 myVectorArray[3] = { Vector3(), Vector3(), Vector3() };
+
+		myVectorArray[1] = Vector3(1, 2, 3);
+
+		Vector3* myVectorArrayPtr = new Vector3[5];	//not recommended, std::vector is preferred
+													//
+		delete[] myVectorArrayPtr;					// the [] are required or only part of the array memory will be removed
 	}
 
 	{
